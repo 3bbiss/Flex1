@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using MySql.Data.MySqlClient;
 
 namespace RepairShopAPI
 {
@@ -13,36 +14,52 @@ namespace RepairShopAPI
 
         public static List<Instrument> GetAll()
         {
-            return DAL.DB.GetAll<Instrument>().ToList();
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            var result = db.GetAll<Instrument>().ToList();
+            db.Close();
+            return result;
         }
 
         public static Instrument GetOne(int id)
         {
-            return DAL.DB.Get<Instrument>(id);
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            var result = db.Get<Instrument>(id);
+            db.Close();
+            return result;
         }
 
         // (C)RUD Create
 
         public static Instrument Add(Instrument inst)
         {
-            DAL.DB.Insert(inst);
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            db.Insert(inst);
+            db.Close();
             return inst;
         }
 
         // CRU(D) Delete
         public static void Delete(int id)
         {
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
             Instrument inst = new Instrument();
             inst.id = id;
-            DAL.DB.Delete<Instrument>(inst);
-
+            db.Delete<Instrument>(inst);
+            db.Close();
         }
 
         // CR(U)D Update
 
         public static void Update(Instrument inst)
         {
-            DAL.DB.Update(inst);
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            db.Update(inst);
+            db.Close();
         }
 
     }

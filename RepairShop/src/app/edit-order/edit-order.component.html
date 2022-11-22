@@ -1,0 +1,18 @@
+<div>
+    <h2>Add New Repair Order</h2>
+    Customer: <input type="text" [(ngModel)]="editOrder.customer" /> <br/>
+    Instrument:
+    
+      <select [(ngModel)]="editOrder.instrument_id">
+        <option *ngFor="let inst of TheInstruments" [value]="inst.id">{{inst.name}}</option>
+      </select>
+    
+    
+    
+    <br/>
+    Status: <input type="text" [(ngModel)]="editOrder.status" /> <br/>
+    Price: <input type="text"  [(ngModel)]="editOrder.price"/> <br/>
+    Notes: <input type="text" [(ngModel)]="editOrder.notes" /> <br/>
+    <input type="checkbox" [(ngModel)]="editOrder.bookmark"> Bookmark <br/>
+    <button (click)="saveIt()">Add</button>
+  </div>

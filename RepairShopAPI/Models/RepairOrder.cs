@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using MySql.Data.MySqlClient;
 
 namespace RepairShopAPI
 {
@@ -20,31 +21,44 @@ namespace RepairShopAPI
         // GetOne C(R)UD
         public static RepairOrder GetOne(int id)
         {
-            return DAL.DB.Get<RepairOrder>(id);
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            var result = db.Get<RepairOrder>(id);
+            db.Close();
+            return result;
         }
 
 
         // Create (C)RUD
         public static RepairOrder Add(RepairOrder order)
         {
-            DAL.DB.Insert(order);
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            db.Insert(order);
+            db.Close();
             return order;
         }
 
         // Delete CRU(D)
         public static void Delete(int id)
         {
-            //DAL.DB.Delete(new RepairOrder { id = id }); // shorter
+            //db.Delete(new RepairOrder { id = id }); // shorter
 
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
             RepairOrder order = new RepairOrder();
             order.id = id;
-            DAL.DB.Delete<RepairOrder>(order);
+            db.Delete<RepairOrder>(order);
+            db.Close();
         }
 
         // Update CR(U)D
         public static void Update(RepairOrder order)
         {
-            DAL.DB.Update(order);
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            db.Update(order);
+            db.Close();
         }
 
     }

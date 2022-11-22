@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
+using MySql.Data.MySqlClient;
 
 namespace RepairShopAPI
 {
@@ -16,9 +17,11 @@ namespace RepairShopAPI
             // Here's how we do it with just a query and not a view
             //return DAL.DB.Query<ShortRepairOrder>("select ro.id, ro.customer, ins.name as Instrument from repairorder ro join instrument ins on ro.instrument_id = ins.id;").ToList();
             // But some argue that putting queries in C# code is not the best idea.
-            return DAL.DB.GetAll<ShortRepairList>().ToList();
-            
-
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            var result = db.GetAll<ShortRepairList>().ToList();
+            db.Close();
+            return result;
         }
     }
 }

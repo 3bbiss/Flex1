@@ -1,0 +1,16 @@
+<div>
+    <h2>Order List</h2>
+    <app-add-order (save)="save($event)"></app-add-order>
+
+    <div *ngFor="let order of repairlist">
+        {{order.customer}} {{order.instrument}}
+        <button (click)="openOrder(order.id)">Open</button>
+    </div>
+
+
+    <div *ngIf="editOrder.id > 0">
+        <app-edit-order [editOrder]="editOrder"></app-edit-order>
+    </div>
+
+</div>
+
