@@ -9,7 +9,7 @@
 
 
     <div *ngIf="editOrder.id > 0">
-        <app-edit-order [editOrder]="editOrder"></app-edit-order>
+        <app-edit-order [editOrder]="editOrder" (save)="update($event)"></app-edit-order>
     </div>
 
 </div>

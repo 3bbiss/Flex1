@@ -17,24 +17,25 @@ export class OrderListComponent implements OnInit {
 		status: 0, price: 0, notes: '', bookmark: false
 	  };
 
-	constructor(private OrderSrv: RepairOrderService) {
-		OrderSrv.shortList(
+	constructor(private OrderSrv: RepairOrderService) {}
 
+	ngOnInit(): void {
+		this.refresh();
+	}
+
+	refresh(){
+		this.OrderSrv.shortList(
 			(result: ShortRepairList[]) => {
 				this.repairlist = result;
 			}
-
 		)
-	}
-
-	ngOnInit(): void {
 	}
 
 	save(order: RepairOrder) {
 		this.OrderSrv.add(
 
 			(result: RepairOrder) => {
-				alert(result.id);
+				this.refresh();
 			},
 
 			order
@@ -49,6 +50,15 @@ export class OrderListComponent implements OnInit {
 				this.editOrder = result;
 			},
 			id
+		);
+	}
+
+	update(order: RepairOrder){
+		this.OrderSrv.update(
+			() => {
+				this.refresh();
+			},
+			order
 		);
 	}
 
