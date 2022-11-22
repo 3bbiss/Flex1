@@ -27,6 +27,10 @@ export class RepairOrderService {
 	shortList(cb: any) {
 		this.http.get<ShortRepairList[]>('https://localhost:5001/repairorder/short').subscribe(cb);
 	}
+
+	bookmarks(cb: any){
+		this.http.get<RepairOrder[]>('https://localhost:5001/repairorder/bookmarks').subscribe(cb);
+	}
 	
 	constructor(private http: HttpClient) { }
 }

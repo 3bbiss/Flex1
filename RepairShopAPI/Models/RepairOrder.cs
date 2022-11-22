@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using MySql.Data.MySqlClient;
 
 namespace RepairShopAPI
@@ -59,6 +60,16 @@ namespace RepairShopAPI
             db.Open();
             db.Update(order);
             db.Close();
+        }
+
+        // Read all favorites
+        public static List<RepairOrder> GetBookmarks()
+        {
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            var result = db.Query<RepairOrder>("select * from repairorder where bookmark = true").ToList();
+            db.Close();
+            return result;
         }
 
     }

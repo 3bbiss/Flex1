@@ -31,13 +31,19 @@ namespace RepairShopAPI.Controllers
             RepairOrder.Update(order);
         }
 
-
+        // GET /repairorder/short - get the short version of all the orders
         [HttpGet("short")]
         public List<ShortRepairList> GetAll()
         {
             return ShortRepairList.getAll();
         }
 
+        // GET /repairorder/bookmarks
+        [HttpGet("bookmarks")]
+        public List<RepairOrder> GetBookmarks()
+        {
+            return RepairOrder.GetBookmarks();
+        }
 
     }
 }

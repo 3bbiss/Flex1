@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { EditOrderComponent } from './edit-order/edit-order.component';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
 // Imported httpclientmodule
 
 @NgModule({
@@ -15,7 +16,8 @@ import { EditOrderComponent } from './edit-order/edit-order.component';
     AppComponent,
     AddOrderComponent,
     OrderListComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    BookmarksComponent
   ],
   imports: [
     BrowserModule,
