@@ -40,9 +40,9 @@ namespace RepairShopAPI.Controllers
 
         // GET /repairorder/bookmarks
         [HttpGet("bookmarks")]
-        public List<RepairOrder> GetBookmarks()
+        public List<ShortRepairList> GetBookmarks()
         {
-            return RepairOrder.GetBookmarks();
+            return ShortRepairList.GetBookmarks();
         }
 
     }

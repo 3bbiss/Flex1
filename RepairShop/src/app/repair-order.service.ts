@@ -29,7 +29,7 @@ export class RepairOrderService {
 	}
 
 	bookmarks(cb: any){
-		this.http.get<RepairOrder[]>('https://localhost:5001/repairorder/bookmarks').subscribe(cb);
+		this.http.get<ShortRepairList[]>('https://localhost:5001/repairorder/bookmarks').subscribe(cb);
 	}
 	
 	constructor(private http: HttpClient) { }
