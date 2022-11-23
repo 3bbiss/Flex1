@@ -1,0 +1,10 @@
+.main{
+    background-color: bisque;
+    border: 1px solid black;
+    margin: .5em .5em .5em .5em;
+    padding: .5em;
+}
+
+h2{
+    margin: 0 0 .3em 0;
+}

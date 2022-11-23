@@ -33,5 +33,15 @@ namespace RepairShopAPI
             return result;
         }
 
+        public static List<ShortRepairList> SearchByName(string name)
+        {
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            var param = new { cust = $"%{name}%" };
+            var result = db.Query<ShortRepairList>("select id, instrument, customer from fullorder where customer like @cust", param).ToList();
+            db.Close();
+            return result;
+        }
+
     }
 }

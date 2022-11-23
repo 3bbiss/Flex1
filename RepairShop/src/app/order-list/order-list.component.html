@@ -2,6 +2,13 @@
     <h2>Order List</h2>
     <app-add-order (save)="save($event)"></app-add-order>
 
+    <div class="toolbar">
+        <input type="checkbox"/> Bookmarks <br/>
+        Search by name: <input type="text"/> <br/>
+        <button>Search</button>
+    </div>
+    
+
     <div *ngFor="let order of repairlist">
         {{order.customer}} {{order.instrument}}
         <button (click)="openOrder(order.id)">Open</button>
