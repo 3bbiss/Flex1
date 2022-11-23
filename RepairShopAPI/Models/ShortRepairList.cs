@@ -23,5 +23,15 @@ namespace RepairShopAPI
             db.Close();
             return result;
         }
+
+        public static List<ShortRepairList> GetBookmarks()
+        {
+            MySqlConnection db = new MySqlConnection(DAL.CS);
+            db.Open();
+            var result = db.Query<ShortRepairList>("select id, instrument, customer from fullorder where bookmark = true").ToList();
+            db.Close();
+            return result;
+        }
+
     }
 }
