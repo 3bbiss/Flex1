@@ -62,4 +62,47 @@ export class OrderListComponent implements OnInit {
 		);
 	}
 
+	searchName: string = "";
+
+
+	search() {
+		this.OrderSrv.searchByName(
+
+			(result: ShortRepairList[]) => {
+				this.repairlist = result;
+			},
+
+			this.searchName
+
+		)
+
+		this.searchName = "";
+	}
+
+	bookmarkCheck: boolean = false;
+
+	changeBookmarks(){
+		console.log('checkbox changed');
+		console.log(this.bookmarkCheck);
+
+		this.searchName = "";
+
+		if (!this.bookmarkCheck){
+			this.refresh();
+		}
+		else{
+			this.OrderSrv.bookmarks(
+				(result: ShortRepairList[]) => {
+					this.repairlist = result;
+				}
+			);
+		}
+	}
+
+
+	clear(){
+		this.searchName = "";
+		this.refresh();
+	}
+
 }

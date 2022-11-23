@@ -31,6 +31,10 @@ export class RepairOrderService {
 	bookmarks(cb: any){
 		this.http.get<ShortRepairList[]>('https://localhost:5001/repairorder/bookmarks').subscribe(cb);
 	}
+
+	searchByName(cb: any, name: string) {
+		this.http.get<ShortRepairList[]>(`https://localhost:5001/repairorder/searchbyname/${name}`).subscribe(cb);
+	}
 	
 	constructor(private http: HttpClient) { }
 }

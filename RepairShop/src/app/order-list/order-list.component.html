@@ -3,9 +3,12 @@
     <app-add-order (save)="save($event)"></app-add-order>
 
     <div class="toolbar">
-        <input type="checkbox"/> Bookmarks <br/>
-        Search by name: <input type="text"/> <br/>
-        <button>Search</button>
+        <!--DO NOT use (click) on checkboxes! It happens before
+        the bound value changes. Use (change) instead for checkboxes. -->
+        <input type="checkbox" (change)="changeBookmarks()" [(ngModel)]="bookmarkCheck" /> Bookmarks <br/>
+        Search by name: <input type="text" [(ngModel)]="searchName" /> 
+        <button (click)="search()">Search</button>
+        <button (click)="clear()">Clear</button>
     </div>
     
 
@@ -21,3 +24,23 @@
 
 </div>
 
+
+<!-- <div>
+	<h2>Order List</h2>
+	<app-add-order (save)="save($event)"></app-add-order>
+
+	<div class="toolbar">
+		<input type="checkbox" /> Bookmarks<br />
+		Search by name: <input type="text" [(ngModel)]="searchName" />
+		<button (click)="search()">Search</button>
+	</div>
+
+	<div *ngFor="let order of repairlist">
+		{{ order.customer }} {{ order.instrument }}
+		<button (click)="openOrder(order.id)">Open</button>
+	</div>
+
+	<div *ngIf="editOrder.id > 0">
+		<app-edit-order [editOrder]="editOrder" (save)="update($event)"></app-edit-order>
+	</div>
+</div> -->
